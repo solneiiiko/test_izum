@@ -1,6 +1,5 @@
 require 'json'
 
-
 class Party
 
   def initialize(opts={})
@@ -16,9 +15,6 @@ class Party
     drink_prices = (@recipes.map do |n, c|
       [ n, c.map{|cn, count| @prices[cn]*count}.inject(:+) ]
     end).to_h
-
-    puts drink_prices
-    puts @employees
 
     new_employees = (@employees.map do |e|
       drink = e["drinks"].min_by {|drink| drink_prices[drink] }
@@ -37,8 +33,4 @@ class Party
 
     @guests
   end
-  # puts employees
-  # puts prices
-  # puts recipes
-  # puts drink_prices
 end
